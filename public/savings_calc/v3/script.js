@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    
    for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener("input", generateTable);
+      elements[i].addEventListener("change", generateTable);
    }
    
    generateTable();

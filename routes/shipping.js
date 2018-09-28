@@ -19,7 +19,7 @@ router.get("/shipping", function(req, res, next) {
 	// is an empty string, or is a number greater than 4, return 
 	// a response code of 400 and JSON with an error property with a 
 	// descriptive error message
-	if (!req.query.hasOwnProperty("service") || req.query.service = "" || req.query.service > 4) {
+	if (!req.query.hasOwnProperty("service") || req.query.service == "" || req.query.service > 4) {
 	    var errorMsg = {
 		error: "Shipping service type is invalid or missing"
 	    }

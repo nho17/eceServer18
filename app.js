@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var participationRouter = require('./routes/participation');
 var usersRouter = require('./routes/users');
+var shippingRouter = require('./routes/shipping');
 
 // Creates the router for the currency router. 
 // The './routes/currency' tells express use the module defined 
@@ -48,6 +49,8 @@ app.use('/participation', participationRouter);
 
 // Connects the /currency endpoint to the currency router object
 app.use('/currency', currencyRouter);
+
+app.use('/shipping', shippingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

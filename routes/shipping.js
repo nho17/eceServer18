@@ -3,7 +3,7 @@ var express = require('express');
 // Creates a router object
 var router = express.Router();
 
-router.get("/shipping", function(req, res, next) {
+router.get("/", function(req, res, next) {
 	// Shipping rates for various carries.                                                                                          
 	// Array entries are costs for same-day, 
 	// 1-day, 2-day, 3-day, and 4+ day shipping                                               

@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var participationRouter = require('./routes/participation');
 var usersRouter = require('./routes/users');
 var shippingRouter = require('./routes/shipping');
+var devicesRouter = require('./routes/devices');
 
 // Creates the router for the currency router. 
 // The './routes/currency' tells express use the module defined 
@@ -37,20 +38,37 @@ app.use(function (req, res, next) {
 });
 
 app.use(logger('dev'));
+
+// The following allows use to send a JSON response using .json() instead of
+// .send(JSON.stringify())
+//
+// Note: Recent express versions automatically install this.
 app.use(express.json());
+
+// The following will URL query strings. Key/value
+// pairs will be accessible using req.query.key
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// The following will parse JSON data passed in the body. Key/value
+// pairs will be accessible using req.body.key
+//
+// Note: Recent express versions automatically install this.
 app.use(bodyParser.json());
+
+// The following will parse URL encoded parameters. Key/value
+// pairs will be accessible using req.params.key
+//
+// Note: Recent express versions automatically install this.
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/participation', participationRouter);
-
-// Connects the /currency endpoint to the currency router object
 app.use('/currency', currencyRouter);
-
 app.use('/shipping', shippingRouter);
+app.use('/devices', devicesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

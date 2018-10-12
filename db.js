@@ -1,7 +1,5 @@
 var mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/db18", {
-   useMongoClient: true,
-});
+mongoose.connect("mongodb://localhost/db18", { useNewUrlParser: true });
 
 module.exports = mongoose;

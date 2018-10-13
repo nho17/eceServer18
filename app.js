@@ -10,6 +10,7 @@ var participationRouter = require('./routes/participation');
 var usersRouter = require('./routes/users');
 var shippingRouter = require('./routes/shipping');
 var devicesRouter = require('./routes/devices');
+var photoRouter = require('./routes/photon');
 
 // Creates the router for the currency router. 
 // The './routes/currency' tells express use the module defined 
@@ -69,6 +70,7 @@ app.use('/participation', participationRouter);
 app.use('/currency', currencyRouter);
 app.use('/shipping', shippingRouter);
 app.use('/devices', devicesRouter);
+app.use('/photon', photonRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

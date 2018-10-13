@@ -84,7 +84,6 @@ router.post('/hit', function(req, res, next) {
         res.status(201).send(JSON.stringify(responseJson));        
         }
     });
-    }
 });
 
 module.exports = router;

@@ -10,7 +10,7 @@ var participationRouter = require('./routes/participation');
 var usersRouter = require('./routes/users');
 var shippingRouter = require('./routes/shipping');
 var devicesRouter = require('./routes/devices');
-var photoRouter = require('./routes/photon');
+var photonRouter = require('./routes/photon');
 
 // Creates the router for the currency router. 
 // The './routes/currency' tells express use the module defined 

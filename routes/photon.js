@@ -17,7 +17,7 @@ router.post('/hit', function(req, res, next) {
         responseJson.message = "Request missing deviceId parameter.";
         res.status(201).send(JSON.stringify(responseJson));
     }
-    
+
     if( !req.body.hasOwnProperty("apikey") ) {
         responseJson.status = "ERROR";
         responseJson.message = "Request missing apikey parameter.";
@@ -35,13 +35,6 @@ router.post('/hit', function(req, res, next) {
     if( !req.body.hasOwnProperty("latitude") ) {
         responseJson.status = "ERROR";
         responseJson.message = "Request missing latitude parameter.";
-        res.status(201).send(JSON.stringify(responseJson));
-        return;
-    }
-    
-    if( !req.body.hasOwnProperty("time") ) {
-        responseJson.status = "ERROR";
-        responseJson.message = "Request missing time parameter.";
         res.status(201).send(JSON.stringify(responseJson));
         return;
     }

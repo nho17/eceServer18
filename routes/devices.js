@@ -19,32 +19,9 @@ function getNewApikey() {
 // GET request return one or "all" devices registered and last time of contact.
 router.get('/status/:devid', function(req, res, next) {
     var deviceId = req.params.devid;
+    var responseJson = { devices: [] };
 
-    // Create query based on parameters deviceId
-    if (deviceId == "all") {
-        var query = {};
-    }
-    else {
-        var query = { "deviceId": deviceId };
-    }
-    
-    // Query the devices collection to returned requested documents
-    Device.find(query, function(err, allDevices) {
-        if (err) {
-            var errormsg = {"message": err};
-            res.status(400).send(JSON.stringify(errormsg));
-        }
-        else {
-            // Create JSON response consisting of an array of devices
-            var responseJson = { devices: [] };
-            for (var doc of allDevices) {
-                // For each found device add a new element to the array
-                // with the device id and last contact time
-                responseJson.devices.push({ "deviceId": doc.deviceId, "lastContact": doc.lastContact});
-            }
-           res.status(200).send(JSON.stringify(responseJson));
-        }
-    });
+    res.status(200).send(JSON.stringify(responseJson));
 });
 
 router.post('/register', function(req, res, next) {

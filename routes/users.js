@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
+var User = require("../models/users");
+var bcrypt = require("bcrypt-nodejs");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/* Register a new user */
+router.post('/register', function(req, res, next) {
+    res.status(201).json( {success: false, message: "FIXME: Need to implement" } );
 });
 
 module.exports = router;

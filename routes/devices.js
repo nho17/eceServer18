@@ -21,7 +21,27 @@ router.get('/status/:devid', function(req, res, next) {
     var deviceId = req.params.devid;
     var responseJson = { devices: [] };
 
-    res.status(200).send(JSON.stringify(responseJson));
+    if (deviceId == "all") {
+      var query = {};
+    }
+    else {
+      var query = {
+          "deviceId" : deviceId
+      };
+    }
+    
+    Device.find(query, function(err, allDevices) {
+      if (err) {
+        var errorMsg = {"message" : err};
+        res.status(400).json(errorMsg);
+      }
+      else {
+         for(var doc of allDevices) {
+            responseJson.devices.push({ "deviceId": doc.deviceId,  "lastContact" : doc.lastContact});
+         }
+      }
+      res.status(200).json(responseJson);
+    });
 });
 
 router.post('/register', function(req, res, next) {
@@ -68,6 +88,8 @@ router.post('/register', function(req, res, next) {
                 if (err) {
                     console.log("Error: " + err);
                     responseJson.message = err;
+                    // This following is equivalent to:
+                    //     res.status(400).send(JSON.stringify(responseJson));
                     res.status(400).json(responseJson);
                 }
                 else {

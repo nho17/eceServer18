@@ -21,7 +21,30 @@ function sendReqForSignup() {
 }
 
 function signUpResponse() {
-   // TODO
+  // 200 is the response code for a successful GET request
+  if (this.status === 201) {
+    if (this.response.success) {
+      // Change current location to the signin page.
+      window.location = "index.html";
+    } 
+    else {
+      responseHTML += "<ol class='ServerResponse'>";
+      for (key in this.response) {
+        responseHTML += "<li> " + key + ": " + this.response[key] + "</li>";
+      }
+      responseHTML += "</ol>";
+    }
+  }
+  else {
+    // Use a span with dark red text for errors
+    responseHTML = "<span class='red-text text-darken-2'>";
+    responseHTML += "Error: " + this.response.error;
+    responseHTML += "</span>"
+  }
+
+  // Update the response div in the webpage and make it visible
+  responseDiv.style.display = "block";
+  responseDiv.innerHTML = responseHTML;
 }
 
 document.addEventListener("DOMContentLoaded", function() {

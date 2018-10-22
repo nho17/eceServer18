@@ -2,11 +2,13 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var User = require("../models/users");
+var Device = require("../models/device");
 var bcrypt = require("bcrypt-nodejs");
 var jwt = require("jwt-simple");
 
 /* Authenticate user */
-var secret = "supersecretserverpassword";
+var secret = fs.readFileSync(__dirname + '/../../jwtkey').toString();
+
 router.post('/signin', function(req, res, next) {
    User.findOne({email: req.body.email}, function(err, user) {
       if (err) {
@@ -54,6 +56,53 @@ router.post('/register', function(req, res, next) {
            }
         });
     });    
+});
+
+router.get("/account" , function(req, res) {
+   // Check for authentication token in x-auth header
+   if (!req.headers["x-auth"]) {
+      return res.status(401).json({success: false, message: "No authentication token"});
+   }
+   
+   var authToken = req.headers["x-auth"];
+   
+   try {
+      var decodedToken = jwt.decode(authToken, secret);
+      var userStatus = {};
+      
+      User.findOne({email: decodedToken.email}, function(err, user) {
+         if(err) {
+            return res.status(200).json({success: false, message: "User does not exist."});
+         }
+         else {
+            userStatus['success'] = true;
+            userStatus['email'] = user.email;
+            userStatus['fullName'] = user.fullName;
+            userStatus['lastAccess'] = user.lastAccess;
+            
+            // Find devices based on decoded token
+		      Device.find({ userEmail : decodedToken.email}, function(err, devices) {
+			      if (!err) {
+			         // Construct device list
+			         var deviceList = []; 
+			         for (device of devices) {
+				         deviceList.push({ 
+				               deviceId: device.deviceId,
+				               apikey: device.apikey,
+				         });
+			         }
+			         userStatus['devices'] = deviceList;
+			      }
+			      
+               return res.status(200).json(userStatus);            
+		      });
+         }
+      });
+   }
+   catch (ex) {
+      return res.status(401).json({success: false, message: "Invalid authentication token."});
+   }
+   
 });
 
 module.exports = router;

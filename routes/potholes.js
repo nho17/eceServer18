@@ -13,6 +13,7 @@ var User = require("../models/users");
 
 // Secret key for JWT
 var secret = fs.readFileSync(__dirname + '/../../jwtkey').toString();
+var authenticateRecentEndpoint = false;
 
 function authenticateAuthToken(req) {
     // Check for authentication token in x-auth header
@@ -141,12 +142,14 @@ router.get("/recent/:days", function(req, res) {
         potholes: [],
     };
     
-    //decodedToken = authenticateAuthToken(req);
-    //if (!decodedToken) {
-    //    responseJson.success = false;
-    //    responseJson.message = "Authentication failed";
-    //    return res.status(401).json(responseJson);
-    //}
+    if (authenticateRecentEndpoint) {
+        decodedToken = authenticateAuthToken(req);
+        if (!decodedToken) {
+            responseJson.success = false;
+            responseJson.message = "Authentication failed";
+            return res.status(401).json(responseJson);
+        }
+    }
     
     
     // Check to ensure the days is between 1 and 30 (inclsuive), return error if not

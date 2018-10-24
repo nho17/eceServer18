@@ -83,7 +83,7 @@ router.post("/hit", function(req, res) {
              loc: {
                  $near : {
                      $geometry: { type: "Point",  coordinates: [req.body.longitude, req.body.latitude] },
-                     $maxDistance: 5.0
+                     $maxDistance: 10.0
                  }
              }
          });

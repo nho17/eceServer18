@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var shippingRouter = require('./routes/shipping');
 var devicesRouter = require('./routes/devices');
 var photonRouter = require('./routes/photon');
+var potholesRouter = require('./routes/potholes');
 var usersRouter = require('./routes/users');
 
 // Creates the router for the currency router. 
@@ -73,6 +74,7 @@ app.use('/shipping', shippingRouter);
 app.use('/devices', devicesRouter);
 app.use('/photon', photonRouter);
 app.use('/users', usersRouter);
+app.use('/potholes', potholesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

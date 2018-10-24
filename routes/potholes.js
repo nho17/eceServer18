@@ -82,7 +82,7 @@ router.post("/hit", function(req, res) {
         var findPotholeQuery = Pothole.findOne({
              loc: {
                  $near : {
-                     $geometry: { type: "Point",  coordinates: [longitude, latitude] },
+                     $geometry: { type: "Point",  coordinates: [req.body.longitude, req.body.latitude] },
                      $maxDistance: 5.0
                  }
              }
@@ -107,7 +107,7 @@ router.post("/hit", function(req, res) {
              else {
                  // Create a new pothole and save the pothole to the database
                  var pothole = new Pothole({
-                     loc: [longitude, latitude],
+                     loc: [req.body.longitude, req.body.latitude],
                      totalHits: 1,
                      lastReported: Date.now(),
                      firstReported: Date.now(),

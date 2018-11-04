@@ -1,8 +1,67 @@
-body {
-  font-family : Helvetica, sans-serif;
-  font-size : 10pt;
-  color : #888888;
-  max-width: 800px;
+html {
+   font-family : Helvetica, sans-serif;
+   font-size : 10pt;
+   color : #888888;
+}
+
+header {
+   background-color: #FFBC32;
+   padding: 5px;
+   margin-bottom: 10px;
+   margin-top: 0px;
+}
+
+nav {
+   position: absolute;
+   right: 10px;
+   top: 15px;
+   color: #6e6e6e;
+}
+
+header a {
+   color: white;
+   font-size: 12pt;
+   padding: 10px;
+   text-decoration: none;
+}
+
+header a:hover {
+   background-color: lightgray;
+}
+
+.sidebar a {
+   color: darkgray;
+   text-decoration: none;
+}
+
+.sidebar a:hover {
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+div.logo {
+   font-weight: bolder;
+   font-size: 16pt;
+   color: #7e7e7e;
+   display: inline-block;
+   padding: 0px;
+   margin: 5px;
+}
+
+div.logo p {
+   padding: 0px;
+   margin: 0px;
+   vertical-align: middle;
+}
+
+.main-content {
+   width: 75%;
+   display: inline-block;
+}
+
+.sidebar {
+   display: inline-block;
+   vertical-align: top;
 }
 
 h1, h2 {
@@ -17,6 +76,11 @@ h1 {
 
 h2 {
    font-size : 16pt;
+}
+
+h3 {
+   color : #F9B678;
+   text-transform : uppercase;
 }
 
 .author {  
@@ -37,8 +101,9 @@ h2 {
 footer {
    text-align : center;
    font-size : 9pt;
-   color : #C1C1C1;
+   color : lightgray;
    margin-top : 30px;
+   padding: 10px;
 }
 
 div.info {

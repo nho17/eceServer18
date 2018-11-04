@@ -1,4 +1,3 @@
-var refreshTimer;
 var map = null;
 
 function getRecentPotholes() {
@@ -53,24 +52,18 @@ function displayMostRecentPothole() {
       }                
     }
     else if (this.status === 401) {
-        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("authToken");
         window.location = "index.html";
     }
     else {
         potholeText.innerHTML = "Error communicating with server.";
-    }
-    
-    // Reset the refresh timer
-    clearInterval(refreshTimer);
-    refreshTimer = window.setInterval(getRecentPotholes, 30*1000);
+    }    
 }
 
 // Executes once the google map api is loaded, and then sets up the handler's and calls
 // getRecentPotholes() to display the recent potholes
 function initRecent() {
-    // Automatically refresh recent potholes every 30 seconds
-    refreshTimer = window.setInterval(getRecentPotholes, 30*1000);
-    // Allow the user to force a refresh by clicking a button.
+    // Allow the user to refresh by clicking a button.
     document.getElementById("refreshRecent").addEventListener("click", getRecentPotholes);
     getRecentPotholes();
 }

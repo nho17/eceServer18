@@ -13,7 +13,7 @@ var User = require("../models/users");
 
 // Secret key for JWT
 var secret = fs.readFileSync(__dirname + '/../../jwtkey').toString();
-var authenticateRecentEndpoint = false;
+var authenticateRecentEndpoint = true;
 
 function authenticateAuthToken(req) {
     // Check for authentication token in x-auth header

@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
-// Import the model for Device documents
+var fs = require('fs');
 var Device = require("../models/device");
+var jwt = require("jwt-simple");
+
+/* Authenticate user */
+var secret = fs.readFileSync(__dirname + '/../../jwtkey').toString();
 
 // Function to generate a random apikey consisting of 32 characters
 function getNewApikey() {
@@ -51,26 +54,40 @@ router.post('/register', function(req, res, next) {
         apikey : "none"
     };
     var deviceExists = false;
-
+    
     // Ensure the request includes the deviceId parameter
     if( !req.body.hasOwnProperty("deviceId")) {
         responseJson.message = "Missing deviceId.";
-        res.status(400).json(responseJson);
-        return;
-    }
-   
-    // Ensure the request includes the email parameter
-    if( !req.body.hasOwnProperty("email")) {
-        responseJson.message = "Missing email address.";
-        res.status(400).json(responseJson);
-        return;
+        return res.status(400).json(responseJson);
     }
 
+    var email = "";
+    
+    // If authToken provided, use email in authToken 
+    if (req.headers["x-auth"]) {
+        try {
+            var decodedToken = jwt.decode(req.headers["x-auth"], secret);
+            email = decodedToken.email;
+        }
+        catch (ex) {
+            responseJson.message = "Invalid authorization token.";
+            return res.status(400).json(responseJson);
+        }
+    }
+    else {
+        // Ensure the request includes the email parameter
+        if( !req.body.hasOwnProperty("email")) {
+            responseJson.message = "Invalid authorization token or missing email address.";
+            return res.status(400).json(responseJson);
+        }
+        email = req.body.email;
+    }
+    
     // See if device is already registered
     Device.findOne({ deviceId: req.body.deviceId }, function(err, device) {
         if (device !== null) {
             responseJson.message = "Device ID " + req.body.deviceId + " already registered.";
-            res.status(400).json(responseJson);
+            return res.status(400).json(responseJson);
         }
         else {
             // Get a new apikey
@@ -79,7 +96,7 @@ router.post('/register', function(req, res, next) {
 	         // Create a new device with specified id, user email, and randomly generated apikey.
             var newDevice = new Device({
                 deviceId: req.body.deviceId,
-                userEmail: req.body.email,
+                userEmail: email,
                 apikey: deviceApikey
             });
 
@@ -90,13 +107,13 @@ router.post('/register', function(req, res, next) {
                     responseJson.message = err;
                     // This following is equivalent to:
                     //     res.status(400).send(JSON.stringify(responseJson));
-                    res.status(400).json(responseJson);
+                    return res.status(400).json(responseJson);
                 }
                 else {
                     responseJson.registered = true;
                     responseJson.apikey = deviceApikey;
                     responseJson.message = "Device ID " + req.body.deviceId + " was registered.";
-                    res.status(201).json(responseJson);
+                    return res.status(201).json(responseJson);
                 }
             });
         }

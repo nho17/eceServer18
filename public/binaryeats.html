@@ -3,9 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Oatmeal Coconut Pantry Cookies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>binary eats - Oatmeal Coconut Pantry Cookies</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="stylesheets/recipe-style.css">
+  <!-- The following are tow different stlyesheets. Try changing which stylesheet is used,
+       and observe the difference.  
+        1. recipe-style.css is the original that is not responsive
+        2. recipe-responsive supports responsive design using two different breakpoints
+           at 600px and 800px and supporting changes throughout
+   -->
+  <!-- <link rel="stylesheet" type="text/css" href="stylesheets/recipe-style.css"> -->
+  <link rel="stylesheet" type="text/css" href="stylesheets/recipe-responsive.css"> 
 </head>
 
 <body>
@@ -17,7 +26,7 @@
     </nav>
   </header>
 
-  <div>
+  <div class="contents">
     <div class="main-content">
       <div class="recipe">
         <div class="info">
@@ -104,7 +113,7 @@
       </ul>
     </div>
   </div>
-
+  
   <footer><span class="copyright">Copyright &copy; 2018, Roman Lysecky</span></footer>
 </body>
 </html>

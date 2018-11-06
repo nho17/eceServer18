@@ -4,28 +4,40 @@ html {
    color : #888888;
 }
 
+body {
+   width: 100vw;
+   margin: 0px;
+}
+
 header {
    background-color: #FFBC32;
    padding: 5px;
    margin-bottom: 10px;
    margin-top: 0px;
+   width: 100vw;  
+   height: 35px;
 }
 
 nav {
    position: absolute;
-   right: 10px;
-   top: 15px;
+   right: 5px;
+   top: 7px;
    color: #6e6e6e;
 }
 
 div.main-content {
-   width: 75%;
+   box-sizing: border-box;
    display: inline-block;
+   width: 74%;
+   padding-left: 10px;
+   padding-right: 10px;
 }
 
 div.sidebar {
+   box-sizing: border-box;
    display: inline-block;
    vertical-align: top;
+   width: 25%;
 }
 
 header a {
@@ -63,7 +75,6 @@ div.logo p {
    margin: 0px;
    vertical-align: middle;
 }
-
 
 h1, h2 {
    color : #F9B678;
@@ -114,11 +125,10 @@ div.info {
 }
 
 .info h1 {
+   box-sizing: border-box;
    display: inline-block;
    vertical-align : middle;
-   text-align : justify;
-   min-width : 300px;
-   max-width : 400px;
+   width : 55%;
    margin-right : 20px;
    margin-bottom : 0px;
 }
@@ -129,8 +139,10 @@ div.info {
 }
 
 div.summary {
+   box-sizing: border-box;
    margin : 5px;
    text-align : center;
+   width: 95%;
 }
 
 .summary img {
@@ -186,10 +198,11 @@ div.notes {
 }
 
 div.ingredients {
+   box-sizing: border-box;
    display : inline-block;
    vertical-align : top;
-   max-width : 300px;
-   margin : 5px 20px 5px 5px;
+   width: 45%;
+   margin : 5px;
    border-bottom : 2px dotted #F9B678;
 }
 
@@ -199,10 +212,11 @@ div.ingredients h2 {
 }
 
 div.directions {
+   box-sizing: border-box;
    display : inline-block;
    vertical-align : top;
    margin : 5px;
-   max-width : 450px;
+   width: 50%;
    border-bottom : 2px dotted #F9B678;
 }
 
@@ -244,4 +258,52 @@ li {
   
 .directions li {
    counter-increment : li
+}
+
+@media screen and (max-width:800px) {
+   div.main-content {
+      width: 100vw;
+   }
+
+   div.sidebar {
+      width: 100vw;
+      padding-left: 15px;
+   }
+}
+
+@media screen and (max-width:600px) {
+   div.main-content {
+      width: 100vw;
+   }
+
+   div.sidebar {
+      width: 100vw;
+      padding-left: 15px;
+   }
+   
+   div.notes {
+      width: 100%;
+      margin: 0px;
+   }
+
+   div.ingredients {
+      width: 100%;
+      margin: 0px;
+   }
+   
+   div.directions {
+      width: 100%;
+      margin: 0px;
+   }
+   
+   
+   
+   .summary img {
+      height: auto;
+      width: 65vw;
+   }
+   
+   .summary table {
+      width: 65vw;
+   }
 }

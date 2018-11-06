@@ -16,15 +16,12 @@ header {
    margin-top: 0px;
    width: 100vw;  
    height: 35px;
-   vertical-align: middle;
 }
 
 nav {
-   box-sizing: border-box;
    position: absolute;
    right: 5px;
    top: 7px;
-   vertical-align: middle;
    color: #6e6e6e;
 }
 
@@ -33,6 +30,7 @@ div.main-content {
    display: inline-block;
    width: 74%;
    padding-left: 10px;
+   padding-right: 10px;
 }
 
 div.sidebar {
@@ -40,7 +38,6 @@ div.sidebar {
    display: inline-block;
    vertical-align: top;
    width: 25%;
-   padding-right: 10px;
 }
 
 header a {
@@ -149,7 +146,7 @@ div.summary {
 }
 
 .summary img {
-   height : 100%;
+   height: 200px;
    margin-right : 5px;
 }
 
@@ -223,9 +220,6 @@ div.directions {
    border-bottom : 2px dotted #F9B678;
 }
 
-
-
-
 div.directions h2 {
    padding-bottom : 10px;
    border-bottom : 2px dotted #F9B678;
@@ -250,7 +244,7 @@ li {
    padding-bottom : 10px;
 }
 
-/* CSS trick to create colored numbers for ol */
+/* CSS to create colored numbers for ol */
 .directions ol {
    list-style : none; 
    counter-reset : li
@@ -273,25 +267,18 @@ li {
 
    div.sidebar {
       width: 100vw;
-      padding-left: 5px;
-      margin-left: 10px;
+      padding-left: 15px;
    }
 }
 
 @media screen and (max-width:600px) {
-   div.contents {
-      margin-left: 10px;
-      margin-right: 10px;
-   }
-
    div.main-content {
-      width: 100%;
+      width: 100vw;
    }
 
    div.sidebar {
-      width: 100%;
-      margin: 0px;
-      padding-left: 10px;
+      width: 100vw;
+      padding-left: 15px;
    }
    
    div.notes {
@@ -309,16 +296,14 @@ li {
       margin: 0px;
    }
    
-   .info h1 {
-      width: 100%;
-      margin: 0px;
-   }
+   
    
    .summary img {
-      width: 60vw;
+      height: auto;
+      width: 65vw;
    }
    
    .summary table {
-      width: 60vw;
+      width: 65vw;
    }
 }

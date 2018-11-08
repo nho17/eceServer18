@@ -1,3 +1,85 @@
+.contents {
+   display: flex;
+   flex-direction: row;
+}
+
+.main-content {
+   display: flex;
+   flex: 1 1 70%;
+   flex-flow: row wrap;
+   
+   padding-left: 10px;
+   padding-right: 10px;
+}
+
+.sidebar {
+   vertical-align: top;
+   padding-left: 15px;
+   flex: 1 1 20%;
+}
+
+.info {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: flex-start;
+   align-items: center;
+   
+   border-bottom : 2px dotted #F9B678;
+   margin : 5px 5px 20px 5px;
+   padding-bottom : 10px;
+}
+
+.info h1 {
+   flex: 1 60%;
+   
+   margin-right : 20px;
+   margin-bottom : 0px;
+}
+
+.summary {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-around;
+   flex: 1 95%;
+
+   margin : 5px;
+}
+
+.ingredients {
+   flex: 1 45%;
+   
+   margin : 5px;
+   border-bottom : 2px dotted #F9B678;
+}
+
+.directions {
+   flex: 1 45%;
+   
+   margin : 5px;
+   border-bottom : 2px dotted #F9B678;
+}
+
+.notes {
+   margin : 5px;
+}
+
+@media screen and (max-width:800px) {
+   .contents {
+      flex-direction: column;
+   }
+}
+
+@media screen and (max-width:600px) {
+   .main-content {
+      flex-direction: column;
+   }
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Everything below here should be the same as the style-responsive.css stylesheet */
+/*---------------------------------------------------------------------------------*/
+
+
 html {
    font-family : Helvetica, sans-serif;
    font-size : 10pt;
@@ -25,21 +107,6 @@ nav {
    color: #6e6e6e;
 }
 
-div.main-content {
-   box-sizing: border-box;
-   display: inline-block;
-   width: 74%;
-   padding-left: 10px;
-   padding-right: 10px;
-}
-
-div.sidebar {
-   box-sizing: border-box;
-   display: inline-block;
-   vertical-align: top;
-   width: 25%;
-}
-
 header a {
    color: white;
    font-size: 12pt;
@@ -65,7 +132,6 @@ div.logo {
    font-weight: bolder;
    font-size: 16pt;
    color: #7e7e7e;
-   display: inline-block;
    padding: 0px;
    margin: 5px;
 }
@@ -118,32 +184,13 @@ footer {
    padding: 10px;
 }
 
-div.info {
-   border-bottom : 2px dotted #F9B678;
-   margin : 5px 5px 20px 5px;
-   padding-bottom : 10px;
-}
 
-.info h1 {
-   box-sizing: border-box;
-   display: inline-block;
-   vertical-align : middle;
-   width : 55%;
-   margin-right : 20px;
-   margin-bottom : 0px;
-}
+
 
 .info p {
-   display : inline-block;
    vertical-align : middle;
 }
 
-div.summary {
-   box-sizing: border-box;
-   margin : 5px;
-   text-align : center;
-   width: 95%;
-}
 
 .summary img {
    height: 200px;
@@ -151,7 +198,6 @@ div.summary {
 }
 
 .summary table {
-   display : inline-block;
    border-spacing : 0;
    text-align : right;
 }
@@ -172,7 +218,6 @@ div.summary {
    color : #6e6e6e;
    text-align : left;
    font-size : 12pt;
-   font-weight: bold;
    padding : 10px 10px 10px 10px;
    border-top: 1px solid white;
    border-bottom: 1px solid white;
@@ -194,30 +239,9 @@ div.summary {
    background-color : #ABB2B9;
 }
 
-div.notes {
-   margin : 10px;
-}
-
-div.ingredients {
-   box-sizing: border-box;
-   display : inline-block;
-   vertical-align : top;
-   width: 45%;
-   margin : 5px;
-   border-bottom : 2px dotted #F9B678;
-}
 
 div.ingredients h2 {
    padding-bottom : 10px;
-   border-bottom : 2px dotted #F9B678;
-}
-
-div.directions {
-   box-sizing: border-box;
-   display : inline-block;
-   vertical-align : top;
-   margin : 5px;
-   width: 50%;
    border-bottom : 2px dotted #F9B678;
 }
 
@@ -261,59 +285,3 @@ li {
    counter-increment : li
 }
 
-@media screen and (max-width:800px) {
-   div.main-content {
-      width: 100vw;
-   }
-
-   div.sidebar {
-      width: 100vw;
-      padding-left: 15px;
-   }
-}
-
-@media screen and (max-width:600px) {
-   div.main-content {
-      width: 100vw;
-   }
-
-   div.sidebar {
-      width: 100vw;
-      padding-left: 15px;
-   }
-   
-   div.notes {
-      width: 100%;
-      margin: 0px;
-   }
-
-   div.ingredients {
-      width: 100%;
-      margin: 0px;
-   }
-   
-   div.directions {
-      width: 100%;
-      margin: 0px;
-   }
-   
-   .info h1 {
-      width: 100%;
-      margin: 0px;
-   }
-   
-   .summary img {
-      height: auto;
-      width: 60vw;
-      margin: 1px;
-   }
-   
-   .summary table {
-      width: 60vw;
-   }
-   
-   .summary td, th {
-      width: 30vw;
-   }
-   
-}

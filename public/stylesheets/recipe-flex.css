@@ -1,19 +1,28 @@
 .contents {
+   display: flex;
+   flex-direction: row;
 }
 
 .main-content {
+   display: flex;
+   flex: 1 1 70%;
+   flex-flow: row wrap;
    
    padding-left: 10px;
    padding-right: 10px;
 }
 
 .sidebar {
-
    vertical-align: top;
    padding-left: 15px;
+   flex: 1 1 20%;
 }
 
 .info {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: flex-start;
+   align-items: center;
    
    border-bottom : 2px dotted #F9B678;
    margin : 5px 5px 20px 5px;
@@ -21,23 +30,30 @@
 }
 
 .info h1 {
+   flex: 1 60%;
    
    margin-right : 20px;
    margin-bottom : 0px;
 }
 
 .summary {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-around;
+   flex: 1 95%;
 
    margin : 5px;
 }
 
 .ingredients {
+   flex: 1 45%;
    
    margin : 5px;
    border-bottom : 2px dotted #F9B678;
 }
 
 .directions {
+   flex: 1 45%;
    
    margin : 5px;
    border-bottom : 2px dotted #F9B678;
@@ -48,14 +64,21 @@
 }
 
 @media screen and (max-width:800px) {
+   .contents {
+      flex-direction: column;
+   }
 }
 
 @media screen and (max-width:600px) {
+   .main-content {
+      flex-direction: column;
+   }
 }
 
 /*---------------------------------------------------------------------------------*/
 /* Everything below here should be the same as the style-responsive.css stylesheet */
 /*---------------------------------------------------------------------------------*/
+
 
 html {
    font-family : Helvetica, sans-serif;
